@@ -1,9 +1,11 @@
 package sg.edu.nus.iss.vttp5a_ssf_day13w.model;
 
 import java.util.Date;
+import java.util.Random;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.annotation.Generated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +13,8 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 public class Contact {
+    private String id = "";
+
     // when to use NotBlank, NotNull, NotEmpty?
     @NotEmpty(message = "Your name is required!")
     @Size(min = 3, max = 64, message = "Your name must be between 3 - 64 characters.")
@@ -34,6 +38,10 @@ public class Contact {
     
     //why does the auto generated constructor have the annotations?
     public Contact(String name, String email, String phoneNumber, Date dob) {
+        Random rand = new Random();
+        int randInt = rand.nextInt();
+        this.id += Integer.toHexString(randInt);
+
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -43,6 +51,14 @@ public class Contact {
     public Contact() {
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -74,6 +90,7 @@ public class Contact {
     public void setDob(Date dob) {
         this.dob = dob;
     }
+
 
 
     
