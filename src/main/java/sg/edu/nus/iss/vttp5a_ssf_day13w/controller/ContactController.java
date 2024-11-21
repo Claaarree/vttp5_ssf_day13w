@@ -6,25 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
-import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Person;
-import sg.edu.nus.iss.vttp5a_ssf_day13w.service.PersonService;
+import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Contact;
+import sg.edu.nus.iss.vttp5a_ssf_day13w.service.ContactService;
 
 @Controller
 @RequestMapping("/persons")
-public class PersonController {
+public class ContactController {
     
     @Autowired
-    PersonService personService;
+    ContactService contactService;
 
     @GetMapping()
     public String getAllPersons(Model model){
-        List<Person> persons = personService.getAllPersons();
+        List<Contact> persons = contactService.getAllContacts();
         model.addAttribute("persons", persons);
 
         return "contactList";
@@ -32,21 +33,28 @@ public class PersonController {
 
     @GetMapping("/contact")
     public String getContactForm(Model model){
-        Person p = new Person();
+        Contact p = new Contact();
         model.addAttribute("person", p);
 
         return "contactForm";
     }
 
     @PostMapping("/contact")
-    public String handleContactForm(@Valid @ModelAttribute("person") Person person, BindingResult result,
+    public String handleContactForm(@Valid @ModelAttribute("person") Contact person, BindingResult result,
     Model model){
         if(result.hasErrors()){
             return "contactForm";
         }
 
-        Person p = new Person(person.getName(), person.getEmail(), person.getPhoneNumber(), person.getDob());
-        personService.createContact(p);
+        if (!contactService.isDobValid(person.getDob())){
+            ObjectError err = new ObjectError("ageError",
+            "Your age doesn't allow you to be added as a contact.");
+            result.addError(err);
+            return "contactForm";
+        }
+
+        Contact p = new Contact(person.getName(), person.getEmail(), person.getPhoneNumber(), person.getDob());
+        contactService.createContact(p);
 
         return "redirect:/persons";
     }

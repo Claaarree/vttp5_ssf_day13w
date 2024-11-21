@@ -5,18 +5,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Person;
+import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Contact;
 
 @Repository
-public class PersonRepo {
+public class ContactRepo {
     
-    private List<Person> persons = new ArrayList<>();
+    private List<Contact> persons = new ArrayList<>();
 
-    public List<Person> getAllPersons(){
+    public List<Contact> getAllContacts(){
         return persons;
     }
 
-    public void createContact(Person p) {
+    public void createContact(Contact p) {
         persons.add(p);
     }
 }

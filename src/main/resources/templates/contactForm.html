@@ -31,6 +31,7 @@
             <label for="dob" class="form-label">Date of Birth: </label>
             <input id="dob" class="form-control" name="dob" type="date" data-th-field="*{dob}"><br>
             <span name="dob" class="text-danger" data-th-if="${#fields.hasErrors('dob')}" data-th-errors="*{dob}"></span>
+            <span name="dobGlo" class="text-danger" data-th-if="${#fields.hasErrors('global')}" data-th-text="${#fields.errors('global')}"></span>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary">Reset</button>

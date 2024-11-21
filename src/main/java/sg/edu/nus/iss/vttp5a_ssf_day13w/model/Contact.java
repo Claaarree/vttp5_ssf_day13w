@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
-public class Person {
+public class Contact {
     // when to use NotBlank, NotNull, NotEmpty?
     @NotEmpty(message = "Your name is required!")
     @Size(min = 3, max = 64, message = "Your name must be between 3 - 64 characters.")
@@ -25,6 +25,7 @@ public class Person {
     private String phoneNumber;
 
     //how to validate date range?
+    //used global error to validate!
     @Past(message = "Your date of birth is required!")
     @NotNull(message = "Your date of birth is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -32,14 +33,14 @@ public class Person {
 
     
     //why does the auto generated constructor have the annotations?
-    public Person(String name, String email, String phoneNumber, Date dob) {
+    public Contact(String name, String email, String phoneNumber, Date dob) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
     }
 
-    public Person() {
+    public Contact() {
     }
 
     public String getName() {
