@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Contact;
 import sg.edu.nus.iss.vttp5a_ssf_day13w.repo.ContactRepo;
+import sg.edu.nus.iss.vttp5a_ssf_day13w.utils.Utility;
 
 @Service
 public class ContactService {
@@ -22,6 +23,7 @@ public class ContactService {
     }
 
     public void createContact(Contact p) {
+        Utility.writeToFile(p);
         contactRepo.createContact(p);
     }
 
@@ -51,5 +53,12 @@ public class ContactService {
         if (age < 10 || age > 100){
             return false;
         } else return true;
+    }
+
+    public List<String> getContactData(String id) {
+        Contact foundContact = contactRepo.findById(id);
+        List<String> dataRead = Utility.readContactFile(foundContact);
+
+        return dataRead;
     }
 }

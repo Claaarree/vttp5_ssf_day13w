@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,14 @@ public class ContactController {
         model.addAttribute("persons", persons);
 
         return "contactList";
+    }
+
+    @GetMapping("/contact/{id}")
+    public String getByID(@PathVariable String id, Model model){
+        List<String> dataRead = contactService.getContactData(id);
+        model.addAttribute("dataRead", dataRead);
+
+        return "individualContact";
     }
 
     @GetMapping("/contact")
@@ -56,6 +65,7 @@ public class ContactController {
         Contact p = new Contact(person.getName(), person.getEmail(), person.getPhoneNumber(), person.getDob());
         contactService.createContact(p);
 
+        
         return "redirect:/persons";
     }
 }

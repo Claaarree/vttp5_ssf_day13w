@@ -26,7 +26,9 @@
             <tbody>
                 <tr data-th-each="person, state : ${persons}">
                     <td data-th-utext="${person.id}"></td>
-                    <td data-th-utext="${person.name}"></td>
+                    <td>
+                        <a th:href="@{/persons/contact/{id} (id=${person.id})}"><span data-th-utext="${person.name}"></a>
+                    </td>
                     <td data-th-utext="${person.email}"></td>
                     <td data-th-utext="${person.phoneNumber}"></td>
                     <td data-th-utext="${#dates.format(person.dob, 'yyyy/MM/dd')}"></td>
