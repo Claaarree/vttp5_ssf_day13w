@@ -7,7 +7,10 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import sg.edu.nus.iss.vttp5a_ssf_day13w.model.Contact;
 
 @Configuration
 public class RedisConfig {
@@ -44,11 +47,11 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> createTemplate(){
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
+    public RedisTemplate<String, Contact> createTemplate(){
+        RedisTemplate<String, Contact> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
         template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(new StringRedisSerializer());
+        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
 
         return template;
     }

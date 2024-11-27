@@ -13,7 +13,7 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import sg.edu.nus.iss.vttp5a_ssf_day13w.utils.Utility;
 
-public class Contact {
+public class Contact extends Object {
     private String id = "";
     private File contactFile;
 
@@ -104,6 +104,11 @@ public class Contact {
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + contactFile + "," + name + "," + email + "," + phoneNumber + "," + dob;
     }
 
 
