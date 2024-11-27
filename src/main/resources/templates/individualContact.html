@@ -9,5 +9,6 @@
     <span th:each="line : ${dataRead}">
         <p th:utext="${line}"></p>
     </span> 
+    <a class="btn btn-primary" data-th-href="@{/persons}">Back to contact list</a>
 </body>
 </html>

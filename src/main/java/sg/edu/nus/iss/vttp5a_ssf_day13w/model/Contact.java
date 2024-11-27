@@ -15,7 +15,7 @@ import sg.edu.nus.iss.vttp5a_ssf_day13w.utils.Utility;
 
 public class Contact {
     private String id = "";
-    private File contactFile = new File(Utility.dataDir + File.pathSeparator + id + ".txt");
+    private File contactFile;
 
     // when to use NotBlank, NotNull, NotEmpty?
     // NotBlank use for String variables
@@ -47,6 +47,7 @@ public class Contact {
         Random rand = new Random();
         int randInt = rand.nextInt();
         this.id += Integer.toHexString(randInt);
+        this.contactFile = new File(".\\" + Utility.dataDir + File.separator + this.id + ".txt");
 
         this.name = name;
         this.email = email;

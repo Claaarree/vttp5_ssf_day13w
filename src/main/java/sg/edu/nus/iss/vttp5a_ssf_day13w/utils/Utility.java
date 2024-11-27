@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,10 @@ public class Utility {
 
     public static void writeToFile(Contact p) {
         try {
-            System.out.println("IN WRITE FILE");
+            // System.out.println("IN WRITE FILE");
             File file = p.getContactFile();
             if (!file.exists()){
-                file.mkdir();
+                file.createNewFile();
             }
             FileWriter fw = new FileWriter(p.getContactFile());
             BufferedWriter bw = new BufferedWriter(fw);
@@ -29,7 +30,8 @@ public class Utility {
             bw.write("Name: " + p.getName() + "\n");
             bw.write("Email: " + p.getEmail() + "\n");
             bw.write("Phone number: " + p.getPhoneNumber() + "\n");
-            bw.write("Date of Birth: " + p.getDob() + "\n");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            bw.write("Date of Birth: " + sdf.format(p.getDob()) + "\n");
 
             bw.flush();
             fw.flush();
@@ -44,8 +46,7 @@ public class Utility {
     }
 
     public static List<String> readContactFile(Contact foundContact) {
-        System.out.println("IN READ FILE");
-       
+        // System.out.println("IN READ FILE");
 
         List<String> dataRead = new ArrayList<>();
         try {

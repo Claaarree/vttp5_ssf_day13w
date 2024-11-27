@@ -27,13 +27,13 @@ public class Vttp5aSsfDay13wApplication {
 			System.out.println(dataDir);
 			Utility.dataDir= dataDir;
 
-			File dataDirFile = new File(dataDir);
-			System.out.println(dataDirFile.getAbsolutePath());
-			if (!dataDirFile.exists()){
-				System.out.println("in make directories");
-				System.out.println(dataDirFile.mkdirs());
-				// dataDirFile.mkdirs();
-			}
+			// File dataDirFile = new File(dataDir);
+			// System.out.println(dataDirFile.getAbsolutePath());
+			// if (!dataDirFile.exists()){
+			// 	System.out.println("in make directories");
+			// 	System.out.println(dataDirFile.mkdirs());
+			// 	// dataDirFile.mkdirs();
+			// }
 		
 		} else{
 			System.out.println("Please specify the data directory file path!");
