@@ -1,7 +1,5 @@
 package sg.edu.nus.iss.vttp5a_ssf_day13w;
 
-import java.io.File;
-
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.SpringApplication;
