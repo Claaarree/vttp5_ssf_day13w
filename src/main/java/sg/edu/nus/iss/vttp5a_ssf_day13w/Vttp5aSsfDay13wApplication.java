@@ -34,6 +34,7 @@ public class Vttp5aSsfDay13wApplication {
 			// }
 		
 		} else{
+			System.out.println("Usage: java -jar target/vttp5a-ssf-day13w-0.0.1-SNAPSHOT.jar --dataDir=src/main/resources/data");
 			System.out.println("Please specify the data directory file path!");
 			System.exit(1);
 		}
